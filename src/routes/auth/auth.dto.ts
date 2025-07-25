@@ -17,6 +17,18 @@ export class RegisterBodyDTO extends LoginBodyDTO {
   confirmPassword: string
 }
 
+export class LoginResDTO {
+  @IsString()
+  accessToken: string
+
+  @IsString()
+  refreshToken: string
+
+  constructor(partial: Partial<LoginResDTO>) {
+    Object.assign(this, partial)
+  }
+}
+
 export class RegisterResDTO {
   id: number
   email: string

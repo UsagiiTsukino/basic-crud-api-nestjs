@@ -1,6 +1,6 @@
 import { Body, ClassSerializerInterceptor, Controller, Post, SerializeOptions, UseInterceptors } from '@nestjs/common'
 import { AuthService } from './auth.service'
-import { RegisterBodyDTO, RegisterResDTO } from './auth.dto'
+import { LoginBodyDTO, LoginResDTO, RegisterBodyDTO, RegisterResDTO } from './auth.dto'
 import { TransformInterceptor } from 'src/shared/interceptor/transform.interceptor'
 
 @Controller('auth')
@@ -13,5 +13,10 @@ export class AuthController {
     console.log('onRegister...')
 
     return new RegisterResDTO(await this.authService.register(body))
+  }
+  @Post('login')
+  async login(@Body() body: LoginBodyDTO) {
+    console.log('onLogin...')
+    return new LoginResDTO(await this.authService.login(body))
   }
 }
